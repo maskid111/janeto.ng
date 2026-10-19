@@ -1,0 +1,7 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "site", "runtimeExecutable": "python", "runtimeArgs": ["-m", "http.server", "8123", "--directory", "public_html"], "port": 8123 },
+    { "name": "mail-mock", "runtimeExecutable": "python", "runtimeArgs": ["-W", "ignore", ".claude/mock-mail.py", "public_html"], "port": 8124 }
+  ]
+}

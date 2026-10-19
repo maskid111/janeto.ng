@@ -1,0 +1,30 @@
+# JANETO.NG – Apache settings for DirectAdmin / HostAfrica shared hosting
+Options -Indexes
+DirectoryIndex index.html
+
+# Pretty URLs: /about -> /about/ (served from about/index.html)
+<IfModule mod_dir.c>
+  DirectorySlash On
+</IfModule>
+
+ErrorDocument 404 /404.html
+
+<IfModule mod_mime.c>
+  AddType font/woff2 .woff2
+  AddType image/svg+xml .svg
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 7 days"
+  ExpiresByType application/javascript "access plus 7 days"
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/svg+xml "access plus 30 days"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
