@@ -267,10 +267,6 @@ def sec_contact(p, inner=False):
         </form>
       </div>
     </div>
-    <div class="contact-map">
-      <iframe title="Map: Manhattan, New York, NY, United States" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-        src="https://maps.google.com/maps?q=Manhattan%2C%20New%20York%2C%20NY%2C%20United%20States&amp;z=15&amp;hl=en&amp;output=embed"></iframe>
-    </div>
   </div>
 </section>'''
 

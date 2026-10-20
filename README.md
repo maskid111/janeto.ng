@@ -64,7 +64,7 @@ To preview locally, run `python -m http.server 8123 --directory public_html` and
 - AOS-style reveal animations (fade-up / slide-up, 200ms ease, 120px offset), replaying when you scroll back up, as on the original.
 - THE ME carousel: Bootstrap-style slide (0.6s ease-in-out), auto-advances every 10s, pauses on hover, arrows, swipe on touch, equal-height slides.
 - Practices / Ventures parallax: same maths as the jarallax library the original uses (type "scroll", speed 0.5, black behind the image). Turned off on phones, as on the original.
-- Contact section: blurred background with a 60% dark overlay, details, form and map.
+- Contact section: blurred background with a 60% dark overlay, details and form.
 - Footer, including the mobile "More ▴" drop-up.
 
 ## Backend features (not functional on static hosting)
@@ -94,7 +94,7 @@ Both forms post to `send-mail.php`. It:
 ## Differences and substitutions
 
 - **SITE123 branding removed:** the "I built my site for free using SITE123" bottom bar, the "Powered by SITE123 - Website creator" footer line and the SITE123 favicon. The favicon is now the site's own brand mark in #560327.
-- **Map:** the original uses SITE123's map iframe (`maps-cdn.cdn-files-a.com`). It is replaced with a standard Google Maps embed of the same address, the only external resource.
+- **Map:** the original's map below the contact form has been removed at the site owner's request. The site now loads no external resources.
 - **Photos:** all SITE123 stock and placeholder photos are replaced with Janet's own photos in `assets/img/janet/` (trimmed, resized to 1400px max). Her photos are never cropped: each frame (hero, I Am Jane, THE ME, Profession) shows the whole photo, with a soft blurred copy of it filling the spare space (`.photo-fit` in `style.css`). Change them in `src/build.py`: the hero and About lines, `TESTIMONIALS`, `TEAM`, and `sec_contact`.
 - **THE ME pictures:** 15 cards have a trait picture from the site owner in the top-right corner of the white panel (`assets/img/the-me/`, list `THE_ME_PICS` in `src/build.py`). Cards 10 (Orchid), 11 (Song), 14 (Audrey Hepburn) and 17 (Flamboyant Corporate) have none; add a file and its name to `THE_ME_PICS` to give them one.
 - **Affiliation logos:** the original showed an empty band (SITE123 sample logos that never loaded). It now shows your 8 affiliations (ASSEV, AEVA, Tushmyhall, Waka Link Event, Otilo Event Market, Xpose Masterclass, Ovation's Glam, CEO & Founder Circle) in the same owl-style carousel: 5 visible on desktop and 3 on phones, endless loop, advancing every 3s, pausing on hover. The files are in `assets/img/affiliations/`, and the list is `AFFILIATIONS` in `src/build.py`.
