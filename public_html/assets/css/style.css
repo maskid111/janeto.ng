@@ -207,6 +207,19 @@ hr.small { width: 50px; height: 0; margin: 10px auto; border: 0; border-top: 3px
   box-shadow: rgba(0, 0, 0, .15) 0 20px 30px 0;
 }
 .hero-image::after { content: ""; position: absolute; inset: 0; background: #000; opacity: .5; }
+
+/* Uncropped photos: the whole photo is shown ("contain") on .photo-full; .photo-blur is a soft blurred copy of
+   the same photo filling the space around it, so every frame keeps its shape. --pos moves the photo inside. */
+.photo-fit { position: relative; overflow: hidden; background-color: #1c1c1c; }
+.photo-fit > .photo-blur {
+  position: absolute; inset: -40px; background-size: cover; background-position: center;
+  filter: blur(24px) brightness(.9); transform: scale(1.08);
+}
+.photo-fit > .photo-full {
+  position: absolute; inset: 0; background-repeat: no-repeat; background-size: contain; background-position: var(--pos, center);
+}
+.hero-image.photo-fit { position: absolute; }
+.hero-image > .photo-full { --pos: 25% center; }
 .hero-box {
   position: absolute; z-index: 1; right: 5%; bottom: -74px; width: 500px; max-width: 90%; padding: 60px;
   background: #fff; border-radius: 5px; box-shadow: rgba(0, 0, 0, .15) 0 20px 30px 0; overflow: hidden;
@@ -215,7 +228,7 @@ hr.small { width: 50px; height: 0; margin: 10px auto; border: 0; border-top: 3px
 /* ---------- about (layout-6) ---------- */
 .about-row { display: flex; align-items: center; gap: 49px; }
 .about-img { flex: 0 0 calc(50% - 25px); }
-.about-image { height: 440px; border-radius: 5px; background-size: cover; background-position: center; box-shadow: rgba(0,0,0,.15) 0 20px 30px 0; }
+.about-image { height: 440px; border-radius: 5px; box-shadow: rgba(0,0,0,.15) 0 20px 30px 0; }
 .about-text { flex: 1; min-width: 0; }
 
 /* ---------- THE ME (testimonials layout-8) ---------- */
@@ -232,12 +245,12 @@ hr.small { width: 50px; height: 0; margin: 10px auto; border: 0; border-top: 3px
 .t-item blockquote { margin: 0; padding: 10px 0 25px; border: 0; }
 .t-card { display: flex; }
 /* portrait photo box: 520 x 776 at full width, matching the SITE123 editor layout */
-.t-image { flex: 0 0 50%; aspect-ratio: 520 / 776; background-size: cover; background-position: center var(--pd, 50%); }
+.t-image { flex: 0 0 50%; aspect-ratio: 520 / 776; }
 .t-statement { flex: 0 0 50%; background: #fff; padding: 48px; line-height: 1.25; display: flex; flex-direction: column; justify-content: center; position: relative; }
 /* trait picture pinned to the top-right corner of the white panel; text centres in the space below it */
 .t-pic { position: absolute; top: 0; right: 0; width: 46%; aspect-ratio: 3 / 4; overflow: hidden; box-shadow: -6px 8px 20px rgba(0, 0, 0, .12); }
 .t-pic img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
-.t-text { padding-top: calc(46% * 4 / 3 * 520 / 424 - 48px); }
+.has-pic .t-text { padding-top: calc(46% * 4 / 3 * 520 / 424 - 48px); }
 .mod-theme.bg-primary .t-statement { background: #fff; }
 .t-title { display: block; font-size: calc(var(--fs) * .7); font-style: italic; text-transform: uppercase; line-height: 1.25; margin-bottom: 8px; }
 .t-name h4 { font-size: calc(var(--fs) * 1.25); font-weight: 700; line-height: 1.1; margin: 0 0 24px; }
@@ -272,7 +285,7 @@ hr.small { width: 50px; height: 0; margin: 10px auto; border: 0; border-top: 3px
 /* ---------- Profession (team layout-1) ---------- */
 .team-row { display: flex; flex-wrap: wrap; justify-content: center; margin: 0 -15px; text-align: center; }
 .team-col { flex: 0 0 25%; max-width: 25%; padding: 0 15px; margin-bottom: 20px; }
-.team-image { padding-top: 100%; border-radius: 3px; background-size: cover; background-position: center var(--pd, 50%); }
+.team-image { padding-top: 100%; border-radius: 3px; }
 .team-details { padding: 20px 0; line-height: 1.25; }
 .member-name { position: relative; font-size: calc(var(--fs) * 1.25); font-weight: 700; line-height: 1.1; margin: 20px 0 8px; padding-bottom: 16px; }
 .member-name::after { content: ""; position: absolute; left: 50%; bottom: 0; width: 50px; margin-left: -25px; border-top: 3px solid var(--main); }
@@ -378,10 +391,12 @@ html.inner .mod-title { margin-bottom: 55px; }
   .t-carousel { padding: 0; }
   .t-item blockquote { padding: 10px 12px 25px; }
   .t-card { flex-direction: column; }
-  .t-image { flex: none; width: 100%; aspect-ratio: 2 / 3; height: auto; background-position: center var(--pm, 50%); }
+  .t-image { flex: none; width: 100%; aspect-ratio: 2 / 3; height: auto; }
   .t-statement { flex: none; padding: 24px 16px; min-height: 180px; }
   .t-pic { width: 112px; top: 0; right: 0; }
-  .t-text { padding-top: 0; padding-right: 124px; }
+  .has-pic .t-text { padding-top: 0; padding-right: 124px; }
+  .hero-image.photo-fit { position: relative; }
+  .hero-image > .photo-full { --pos: center; }
   .rating { padding-top: 8px; }
   .t-control { display: none; }
 
@@ -395,7 +410,6 @@ html.inner .mod-title { margin-bottom: 55px; }
   .mod-split .hd2 { font-size: 16.0128px; }
 
   .team-col { flex-basis: 100%; max-width: 100%; }
-  .team-image { background-position: center var(--pm, 50%); }
   .team-details .position { margin-bottom: 17px; }
   .form-2col { flex-direction: column; gap: 0; }
   .contact-map { padding-top: 50px; margin-bottom: -50px; }

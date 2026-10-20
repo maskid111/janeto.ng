@@ -38,7 +38,7 @@ def sec_hero(p):
 <section id="section-169" class="mod mod-hero">
   <div class="aos-wrap" data-aos="fade-up">
     <div class="hero-container">
-      <div class="hero-image" style="background-image:url({p}assets/img/janet/champagne-satin-evening.jpg);background-position:center 12%"></div>
+      <div class="hero-image photo-fit"><div class="photo-blur" style="background-image:url({p}assets/img/janet/brown-beaded-suit.jpg)"></div><div class="photo-full" style="background-image:url({p}assets/img/janet/brown-beaded-suit.jpg)"></div></div>
       <div class="hero-box">
         <div data-aos="slide-up"><h1 class="hd1" style="--fs:45">Meet Me-<br>&nbsp;Janet O.Oyeaalume</h1></div>
         <div class="hsep"></div>
@@ -54,7 +54,7 @@ def sec_about(p, inner=False):
 <section id="section-6aaf158084542" class="mod mod-about{' bg-primary' if inner else ''}">
   <div class="container" data-aos="fade-up">
     <div class="about-row">
-      <div class="about-img"><div class="about-image" role="img" aria-label="I Am Jane" style="background-image:url({p}assets/img/janet/curls-portrait.jpg);background-position:center 28%"></div></div>
+      <div class="about-img"><div class="about-image photo-fit" role="img" aria-label="I Am Jane"><div class="photo-blur" style="background-image:url({p}assets/img/janet/curls-portrait.jpg)"></div><div class="photo-full" style="background-image:url({p}assets/img/janet/curls-portrait.jpg)"></div></div></div>
       <div class="about-text">
         <div data-aos="fade-up"><div class="hd1" style="--fs:63">I Am Jane</div></div>
         <div class="hsep"></div>
@@ -65,41 +65,16 @@ def sec_about(p, inner=False):
 </section>'''
 
 
-# Photo size (w, h) and where her face sits, as a fraction of the photo's height. Used to crop the wide
-# THE ME cards so the face is always in frame (see face_crop()).
-FACES = {
-    "black-blazer-dress": (932, 1280, .13), "black-lace-jumpsuit": (591, 1069, .15),
-    "black-suit-cane": (584, 1255, .10), "black-suit-fur-chair": (591, 789, .20),
-    "brown-beaded-suit": (1024, 1280, .20), "champagne-satin-evening": (1024, 1280, .25),
-    "curls-portrait": (534, 921, .30), "fur-portrait": (960, 1280, .22),
-    "ivory-suit-seated": (612, 1211, .13), "office-black-blazer": (591, 890, .27),
-    "office-ivory-suit": (591, 890, .27), "pearls-headshot": (1024, 1280, .35),
-    "red-blazer-staircase": (960, 1280, .18), "white-peplum-sofa": (1024, 1280, .32),
-    "white-shirt-denim": (591, 774, .18), "white-top-palazzo": (1024, 1280, .15),
-}
-
-
-def face_crop(photo, box_w, box_h, face_at=.38):
-    """background-position-y (%) that puts the face ~38% down a box_w x box_h cover-cropped box."""
-    w, h, f = FACES[photo]
-    scaled_h = box_w * h / w
-    spare = scaled_h - box_h
-    if spare <= 0:
-        return 50
-    return round(max(0, min(100, (f * scaled_h - face_at * box_h) / spare * 100)), 1)
-
-
-# THE ME cards, in order: (label, trait, value, photo) – photos live in assets/img/janet/
 # Picture shown in the top-right corner of each THE ME card (same order as TESTIMONIALS),
-# from assets/img/the-me/. Web-sourced ones are credited in public_html/credits.txt.
+# from assets/img/the-me/. ("", "") = no picture for that card.
 THE_ME_PICS = [
     ("panther", ""), ("ivory", ""), ("spring", ""), ("ocean-water", ""), ("cannapie", ""), ("ruby-gem", ""),
     ("wild-emotions", ""), ("water-drop-sunrise", ""), ("scorpio", ""),
-    ("orchid", "Photo: Alvesgaspar, CC BY-SA 4.0, via Wikimedia Commons"),
-    ("song", "Photo: Amitbalani, CC0, via Wikimedia Commons"), ("italy", ""), ("vanilla", ""),
-    ("audrey-hepburn", "Audrey Hepburn, 1956. Paramount photo by Bud Fraker, public domain"),
+    ("", ""),
+    ("", ""), ("italy", ""), ("vanilla", ""),
+    ("", ""),
     ("exquisite-luxury-suit", ""), ("candles-lotus", ""),
-    ("flamboyant-corporate", "Oscar de la Renta pantsuit. RISD Museum, CC0"), ("pearl", ""), ("gold", ""),
+    ("", ""), ("pearl", ""), ("gold", ""),
 ]
 
 TESTIMONIALS = [
@@ -141,9 +116,9 @@ def sec_theme(p, inner=False):
         items.append(f'''
           <div class="t-item{' active' if i == 0 else ''}">
             <blockquote><div class="t-card">
-              <div class="t-image" role="img" aria-label="{escape(label)}" style="background-image:url({p}assets/img/janet/{img}.jpg);--pd:{face_crop(img, 520, 776)}%;--pm:{face_crop(img, 321, 479)}%"></div>
-              <div class="t-statement">
-                <div class="t-pic"><img src="{p}assets/img/the-me/{THE_ME_PICS[i][0]}.jpg" alt="{escape(value)}" title="{escape(THE_ME_PICS[i][1] or value)}" loading="lazy"></div>
+              <div class="t-image photo-fit" role="img" aria-label="{escape(label)}"><div class="photo-blur" style="background-image:url({p}assets/img/janet/{img}.jpg)"></div><div class="photo-full" style="background-image:url({p}assets/img/janet/{img}.jpg)"></div></div>
+              <div class="t-statement{' has-pic' if THE_ME_PICS[i][0] else ''}">
+                {f'<div class="t-pic"><img src="{p}assets/img/the-me/{THE_ME_PICS[i][0]}.jpg" alt="{escape(value)}" title="{escape(THE_ME_PICS[i][1] or value)}" loading="lazy"></div>' if THE_ME_PICS[i][0] else ''}
                 <div class="t-text">
                 <div class="t-wrap"><span class="t-title">{escape(label)}</span><div class="t-name"><h4>{escape(name)}</h4></div></div>
                 <p class="lead">{escape(value)}</p>
@@ -217,7 +192,7 @@ def sec_profession(p, inner=False):
     cards = "".join(f'''
       <div class="team-col">
         <div class="team-member">
-          <div class="team-image" role="img" aria-label="{escape(n)}" style="background-image:url({p}assets/img/janet/{img}.jpg);--pd:{face_crop(img, 262, 262)}%;--pm:{face_crop(img, 345, 345)}%"></div>
+          <div class="team-image photo-fit" role="img" aria-label="{escape(n)}"><div class="photo-blur" style="background-image:url({p}assets/img/janet/{img}.jpg)"></div><div class="photo-full" style="background-image:url({p}assets/img/janet/{img}.jpg)"></div></div>
           <div class="team-details">
             <h4 class="member-name">{escape(n)}</h4>
             <p class="position">{escape(pos)}</p>
@@ -418,7 +393,7 @@ def page(title, body, p, active, home, depth_note=""):
 <meta name="description" content="{escape(DESCRIPTION)}">
 <meta property="og:title" content="{escape(title)}">
 <meta property="og:description" content="{escape(DESCRIPTION)}">
-<meta property="og:image" content="{p}assets/img/janet/champagne-satin-evening.jpg">
+<meta property="og:image" content="{p}assets/img/janet/brown-beaded-suit.jpg">
 <meta name="theme-color" content="#070104">
 <link rel="icon" type="image/svg+xml" href="{p}assets/icons/favicon.svg">
 <link rel="preload" href="{p}assets/fonts/roboto-condensed-latin-normal.woff2" as="font" type="font/woff2" crossorigin>
