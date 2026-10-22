@@ -85,7 +85,6 @@
     if (!t) return;
     if (t.classList.contains('js-open-menu')) { e.preventDefault(); openPopup('popupMenu'); }
     else if (t.classList.contains('js-open-email')) { e.preventDefault(); openPopup('popupEmail'); }
-    else if (t.classList.contains('js-open-client')) { e.preventDefault(); openPopup('popupClient'); }
     else if (t.classList.contains('js-close')) { e.preventDefault(); closePopup(t.closest('.popup').id); }
   });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePopup(); });
@@ -162,15 +161,6 @@
     });
     form.addEventListener('input', function (e) { if (e.target.classList.contains('error')) setError(e.target, ''); });
   });
-  var client = $('.client-form');
-  if (client) {
-    client.addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (!validate(client)) return;
-      note(client, 'Client sign-in needs a server-side account system and isn’t available on this static website.');
-    });
-  }
-
   /* ---------- THE ME carousel (Bootstrap-style slide, 10s interval, pause on hover, swipe) ---------- */
   $$('.t-carousel').forEach(function (car) {
     var items = $$('.t-item', car), idx = 0, busy = false, timer = null;

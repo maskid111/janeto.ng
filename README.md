@@ -60,7 +60,7 @@ To preview locally, run `python -m http.server 8123 --directory public_html` and
 - Header: transparent over the home hero, solid black elsewhere; shrinks from 100px to 80px on scroll (0.35s).
   Active and hover underline; "More ▾" dropdown when the menu doesn't fit (for example at 1024px).
 - Mobile header (under 768px): hamburger, centred logo and envelope. Full-screen menu slides down (0.7s).
-- Envelope → "Contact Us" popup; user icon → "Please enter your email" client-zone popup.
+- Envelope → "Contact Us" popup. (The original's client-zone sign-in popup and user icon are removed: this is a personal site with no accounts.)
 - AOS-style reveal animations (fade-up / slide-up, 200ms ease, 120px offset), replaying when you scroll back up, as on the original.
 - THE ME carousel: Bootstrap-style slide (0.6s ease-in-out), auto-advances every 10s, pauses on hover, arrows, swipe on touch, equal-height slides.
 - Practices / Ventures parallax: same maths as the jarallax library the original uses (type "scroll", speed 0.5, black behind the image). Turned off on phones, as on the original.
@@ -72,7 +72,6 @@ To preview locally, run `python -m http.server 8123 --directory public_html` and
 | Feature | Original | This version |
 |---|---|---|
 | Contact form and "Contact Us" popup | Sent through SITE123's servers | Posted to `send-mail.php`, which emails ovationsglam@gmail.com with PHP `mail()`. "Thank you for contacting us." appears only after the server confirms. If PHP or mail() isn't available, the visitor's email app opens with the message pre-filled instead. See **Contact form email** below. |
-| Client zone (user icon) | SITE123 member sign-in | The popup UI is reproduced. Submitting shows a note that sign-in needs a server-side account system. |
 | Schedule Booking | SITE123 booking module | Only the heading shows, as on the original (it has no services configured). Online booking needs a booking backend or an embedded booking service. |
 
 ## Contact form email (send-mail.php)

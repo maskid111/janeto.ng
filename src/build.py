@@ -42,7 +42,14 @@ def sec_hero(p):
       <div class="hero-box">
         <div data-aos="slide-up"><h1 class="hd1" style="--fs:45">Meet Me-<br>&nbsp;Janet O.Oyeaalume</h1></div>
         <div class="hsep"></div>
-        <div data-aos="slide-up"><h2 class="hd2" style="--fs:25">Behinde the name. <br>A glimpse into my story, values, and the journey that makes me who I am.&nbsp;</h2></div>
+        <div data-aos="slide-up">
+          <dl class="hero-facets">
+            <dt>The Executive</dt><dd>Leadership, expertise, and influence.</dd>
+            <dt>The Woman</dt><dd>Personality, lifestyle, interests, and values.</dd>
+            <dt>The Visionary</dt><dd>Ambitions, creativity, purpose, and legacy.</dd>
+          </dl>
+          <p class="hero-statement">Multifaceted by nature.<br>Exceptional by design.<br>Purposeful in every pursuit.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -58,7 +65,16 @@ def sec_about(p, inner=False):
       <div class="about-text">
         <div data-aos="fade-up"><div class="hd1" style="--fs:63">I Am Jane</div></div>
         <div class="hsep"></div>
-        <div data-aos="fade-up"><div class="hd2" style="--fs:25">Unapologetically multifaceted.<br>My identity, mindset, and the essence of the woman I am becoming.<br><br></div></div>
+        <div data-aos="fade-up">
+          <div class="about-list">
+            <div class="about-item"><h3>Hobbies &amp; Interests</h3><p>Beyond business, I enjoy planning, Netflix movies, music, quiet moments, and meaningful conversations that inspire growth and broaden my perspective.</p></div>
+            <div class="about-item"><h3>My Likes</h3><p>I appreciate peace, elegance, honesty, loyalty, consistency, genuine connections, and the finer things in life.</p></div>
+            <div class="about-item"><h3>Insights &amp; Perspectives</h3><p>I believe in continuous growth, purposeful living, excellence in execution, and building a legacy that speaks beyond me.</p></div>
+            <div class="about-item"><h3>Lifestyle &amp; Personality</h3><p>An introvert with an executive mindset, a creative soul, and a heart for meaningful impact. I value privacy, intentional living, and quality over quantity.</p></div>
+            <div class="about-item"><h3>My Philosophy</h3><p>To live purposefully, lead gracefully, create exceptionally, and leave every space better than I met it.</p></div>
+            <div class="about-item"><h3>Fun Facts</h3><p>Multifaceted by nature, ambitious by vision, detail-oriented by choice, and always evolving. I believe there is always something new to learn, create, and become.</p></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -81,14 +97,14 @@ TESTIMONIALS = [
     ("Jane 1", "As Animal", "Panther", "black-suit-cane"),
     ("Jane 2", "As Colour", "Ivory", "ivory-suit-seated"),
     ("Jane 3", "As Season", "Spring", "white-peplum-sofa"),
-    ("Jane 4", "As Element", "Ocean Water", "white-shirt-denim"),
+    ("Jane 4", "As Element", "Ocean Water", "white-shirt-denim-crop"),
     ("Jane 5", "As Food", "Cannapie", "brown-beaded-suit"),
     ("Jane 6", "As Mineral", "Ruby", "red-blazer-staircase"),
     ("Jane 7", "As Weather", "Wild Emotions", "fur-portrait"),
     ("Jane 8", "As Feeling", "Peaceful", "curls-portrait"),
-    ("Jane 9", "As Zodiac Sign", "Scorpio", "black-suit-fur-chair"),
+    ("Jane 9", "As Zodiac Sign", "Scorpio", "black-suit-fur-chair-crop"),
     ("Jane 10", "As Flower", "Orchid", "white-top-palazzo"),
-    ("Jane 11", "As Song", "All That Matters in the End", "black-lace-jumpsuit"),
+    ("Jane 11", "As Song", "All That Matters in the End", "black-lace-jumpsuit-crop"),
     ("Jane 12", "As Country", "Italy", "red-blazer-staircase"),
     ("Jane 13", "As Scent", "Vanilla", "office-ivory-suit"),
     ("Jane 14", "As Person", "Audrey Hepburn", "black-blazer-dress"),
@@ -247,11 +263,11 @@ def sec_contact(p, inner=False):
     <div class="container">
       <div class="contact-row">
         <div class="contact-details">
-          <ul class="list-unstyled"><li>Manhattan, New York, NY, United States</li></ul>
-          <ul class="list-unstyled">
-            <li><a href="tel:999-7777-000">{ico("phone")}<span dir="ltr">999-7777-000</span></a></li>
-            <li><a href="mailto:{EMAIL}">{ico("envelope-o")}{EMAIL}</a></li>
-            <li>{ico("clock-o")}Mon-Fri - 08:00-19:00</li>
+          <ul class="list-unstyled contact-social">
+            <li><a href="https://wa.me/2348130041413" target="_blank" rel="noopener">{ico("whatsapp")}<span dir="ltr">+234 813 004 1413</span></a></li>
+            <li><a href="https://www.linkedin.com/in/janet-o-oyeaalume-ab993a23b" target="_blank" rel="noopener">{ico("linkedin")}LinkedIn</a></li>
+            <li><a href="https://www.facebook.com/share/1ExdSBECvL/" target="_blank" rel="noopener">{ico("facebook")}Facebook</a></li>
+            <li><a href="https://www.instagram.com/janet_oyeaalume_o" target="_blank" rel="noopener">{ico("instagram")}Instagram</a></li>
           </ul>
         </div>
         <form class="contact-form js-mail-form" novalidate data-subject="Website contact form" data-form="section" action="{p}send-mail.php" method="post">
@@ -302,7 +318,6 @@ def header(p, active, home):
       <ul class="navPages">{items}<li class="nav-more" hidden><a href="#" aria-haspopup="true" aria-expanded="false"><span>More</span> {ico("caret-down")}</a><ul class="nav-dropdown"></ul></li></ul>
       <ul class="navActions">
         <li><a href="#" class="js-open-email" aria-label="Email">{ico("envelope")}</a></li>
-        <li><a href="#" class="js-open-client" aria-label="Client zone">{ico("user")}</a></li>
       </ul>
     </div>
   </div>
@@ -319,7 +334,6 @@ def header(p, active, home):
     <ul class="popup-nav">{items}</ul>
     <div class="popup-actions">
       <a href="#" class="js-open-email" aria-label="Email">{ico("envelope")}</a>
-      <a href="#" class="js-open-client" aria-label="Client zone">{ico("user")}</a>
     </div>
   </div>
 </div>
@@ -338,20 +352,6 @@ def header(p, active, home):
         <div class="form-group"><label>Description</label><textarea class="form-control" name="message" data-label="Description" rows="4" placeholder="Description"></textarea></div>
         <div class="hp-field" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></div>
         <button type="submit" class="btn btn-primary btn-block">Send</button>
-        <p class="form-note" role="status" hidden></p>
-      </form>
-    </div>
-  </div>
-</div>
-<div id="popupClient" class="popup popup-client" aria-hidden="true">
-  <div class="popup-cover"></div>
-  <button type="button" class="popup-close left js-close" aria-label="Close">{ico("times")}</button>
-  <div class="popup-content">
-    <div class="client-box">
-      <div class="client-head">Please enter your email</div>
-      <form class="client-form" novalidate>
-        <input type="text" class="form-control" placeholder="example@example.com" required data-email>
-        <button type="submit" class="btn btn-primary">Sign in or create an account</button>
         <p class="form-note" role="status" hidden></p>
       </form>
     </div>
